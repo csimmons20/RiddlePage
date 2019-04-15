@@ -3,77 +3,84 @@
 <!-- ** = Problem to fix-->
 
 
-<!-- Make a title for the tab-->
+
 <head>
+    <!-- Make a title for the tab-->
     <title>Riddle Me This</title>
+    
+     <!-- This meta tag make the text scale correctly on desktop AND mobile browsers. -->
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+     <!-- This link and 2 scripts load the Bootstrap CSS stylesheet -->
+     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </head>
 
 <!-- Make background color vivid blue-->
 <body style="background-color: #32a0ff">
+    <nav class="navbar navbar-expand-md navbar-dark bg-primary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Riddle Me This Quiz</a>
+            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#myNavbar">
+                <span class="navbar-toggler-icon"></span> 
+            </button>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav">
+                    <li><a class="nav-link" href="Responses.html">Responses</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
-<!-- Put heading of the game and who's it by--> 
-<h1 style="color:#FFFF00;" align="center">Riddle Me This</h1> 
-<h3 style="color: #FFFF00;" align="center">By Chloe Simmons</h3> 
+    <br>
+<!-- Link to answers -->
+<div class="container-fluid">
+    <a href="https://www.everythingmom.com/parenting/45-riddles-and-brain-teasers-for-kids">
+    <div class="alert alert-info" role="alert"> Riddle Answer Key</div>
+</a>
+<!-- Instructions -->
+<div class="alert alert-info" role="alert">
+    <b>Instructions:</b> Read the riddle and answer each question as best as you can. Remember to think out of the box!
+</div>
+<!-- Image -->
+    <div class="text-center">
+        <img src="Riddle.png" class="rounded" alt="...">
+      </div>
+<!-- Questions -->
+<form>
+<div class="form-group ">
+    <label for="letter"> <b>1. What word begins and ends with an E but only has one letter?</b></label>
+    <textarea class="form-control" id="letter" rows="2"></textarea>
+</div> 
+<div class="form-group ">
+    <label for="tall"> <b>2. I’m tall when I’m young and I’m short when I’m old. What am I?</b></label>
+    <textarea class="form-control" id="tall" rows="2"></textarea>
+</div>    
+<div class="form-group ">
+    <label for="house"> <b>3. In a one-story pink house, there was a pink person, a pink cat, a pink fish, a pink computer, a pink chair, a pink table, a pink telephone, a pink shower – everything was pink! What color were the stairs?</b></label>
+    <textarea class="form-control" id="house" rows="2"></textarea>
+</div>
+<div class="form-group ">
+    <label for="rainbow"> <b>4. What is at the end of a rainbow?</b></label>
+    <textarea class="form-control" id="rainbow" rows="2"></textarea>
+</div>
+<div class="form-group ">
+    <label for="light"> <b>5. A girl is sitting in a house at night that has no lights on at all. There is no lamp, no candle, nothing. Yet she is reading. How?</b></label>
+    <textarea class="form-control" id="light" rows="2"></textarea>
+</div>
+<div class="form-group ">
+    <label for="wood"> <b>6. What goes around and around the wood, but never goes into the wood?</b></label>
+    <textarea class="form-control" id="wood" rows="2"></textarea>
+</div>
+<!-- Submit Button-->
+<button type="button" class="btn btn-primary btn-lg btn-block" submit onclick="alert('Where do these answers get stored?')">
+    Submit Your Answer!
+    </button>
+    <br>
 
-<!-- Display Image ** (Center it)-->
-<img src="Riddle.png" width="500" height="500">
+</form>
 
-<!-- Give insructions on the game-->
-<p style="color: #FFFF00"> <font size="6"> <b>Instructions:</b> Read the riddle and answer each question as best as you can. Remember to think out of the box! </font></p>
-
-<!-- Riddle # 1 & 2 with text in coloumns-->
-<table style="border:2px solid white;" width="782" align="center">
-<tr>
-    <td>
-       <p style="border:2px solid #9900ff;"><b>1. What word begins and ends with an E but only has one letter?</b></p>
-       <textarea rows="2" cols="50">Your Answer</textarea>
-   </td>
-   <td>
-       <p style="border:2px solid #0000ff"><b>I’m tall when I’m young and I’m short when I’m old. What am I?</b></p>
-       <textarea rows="2" cols="50">Your Answer</textarea>
-   </td>
-</tr>
-</table>
-
-<!-- Riddle # 3 centered--> 
-<table style="border:2px solid white;" width="650" align="center"> 
-    <tr>
-        <td>
-            <p style="text-align:center;"> <u>3. In a one-story pink house, there was a pink person, a pink cat, a pink fish, a pink computer, a pink chair, a pink table, a pink telephone, a pink shower – everything was pink! What color were the stairs?</u></p>
-            <textarea rows="2" cols="125">Your Answer</textarea>
-        </td> 
-     </tr>  
-</table>
-
-<!-- Riddle # 4 with different font color and background color-->
-<table style="border: 2px solid white;" width="782" align="center">
-    <td>
-        <p style="background-color: blue; color:yellow"><i> 4. What is at the end of a rainbow?</i></p>
-        <textarea rows="2" cols="100">Your Answer</textarea>
-    </td>
-</table>
-
-</table>
-
-<!-- Riddle # 5 & 6 with different font color-->
-<table style="border: 2px solid white;" width="782" align="center">
-    <td>
-        <p style="color: yellow;"> <b>5. A girl is sitting in a house at night that has no lights on at all. There is no lamp, no candle, nothing. Yet she is reading. How?</b></p>
-        <textarea rows="2" cols="50">Your Answer</textarea>
-    </td>
-    <td>
-        <p style="color: yellow"><b>6. What goes around and around the wood, but never goes into the wood?</b></p>
-        <textarea rows="2" cols="50">Your Answer</textarea>
-    </td>
-</table>
-
-<!-- Create the submit button-->
-<button type="button">Submit Answers</button>
-
-<!-- Create Link to answers-->
-<a style="color: black"  href="https://www.everythingmom.com/parenting/45-riddles-and-brain-teasers-for-kids"><b><i> Answer Key</i></b></a>
-
-<!-- Thanks for playing!-->
-<h1 style="color:#FFFF00;" align="center">Thanks for Playing!</h1>
-</body> 
+        </div> 
+    </body> 
 </html>
