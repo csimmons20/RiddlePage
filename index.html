@@ -15,6 +15,14 @@
      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+     <style>
+            img {
+              display: block;
+              margin-left: auto;
+              margin-right: auto;
+            }
+            </style>
 </head>
 
 <!-- Make background color vivid blue-->
@@ -39,15 +47,18 @@
     <a href="https://www.everythingmom.com/parenting/45-riddles-and-brain-teasers-for-kids">
     <div class="alert alert-info" role="alert"> Riddle Answer Key</div>
 </a>
+
 <!-- Instructions -->
 <div class="alert alert-info" role="alert">
     <b>Instructions:</b> Read the riddle and answer each question as best as you can. Remember to think out of the box!
 </div>
-<!-- Image -->
-    <div class="text-center">
-        <img src="Riddle.png" class="rounded" alt="...">
+
+<!-- Image -->    
+<div class="holder">
+        <img class="img-fluid" src="Riddle.png">
       </div>
-<!-- Questions -->
+
+      <!-- Questions -->
 <form>
 <div class="form-group ">
     <label for="letter"> <b>1. What word begins and ends with an E but only has one letter?</b></label>
@@ -73,6 +84,7 @@
     <label for="wood"> <b>6. What goes around and around the wood, but never goes into the wood?</b></label>
     <textarea class="form-control" id="wood" rows="2"></textarea>
 </div>
+
 <!-- Submit Button-->
 <button type="button" class="btn btn-primary btn-lg btn-block" submit onclick="alert('Where do these answers get stored?')">
     Submit Your Answer!
