@@ -15,14 +15,6 @@
      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-
-     <style>
-            img {
-              display: block;
-              margin-left: auto;
-              margin-right: auto;
-            }
-            </style>
 </head>
 
 <!-- Make background color vivid blue-->
@@ -45,7 +37,7 @@
 <!-- Link to answers -->
 <div class="container-fluid">
     <a href="https://www.everythingmom.com/parenting/45-riddles-and-brain-teasers-for-kids">
-    <div class="alert alert-info" role="alert"> Riddle Answer Key</div>
+    <div class="alert alert-info" role="alert" style="text-align: center"> Riddle Answer Key</div>
 </a>
 
 <!-- Instructions -->
@@ -59,7 +51,7 @@
       </div>
 
       <!-- Questions -->
-<form>
+<form id="set1">
 <div class="form-group ">
     <label for="letter"> <b>1. What word begins and ends with an E but only has one letter?</b></label>
     <textarea class="form-control" id="letter" rows="2"></textarea>
@@ -67,7 +59,11 @@
 <div class="form-group ">
     <label for="tall"> <b>2. I’m tall when I’m young and I’m short when I’m old. What am I?</b></label>
     <textarea class="form-control" id="tall" rows="2"></textarea>
-</div>    
+</div>
+    <button type="button" class="btn btn-primary btn-lg btn-block" id="next1" onclick="displayNextQuestions(1)">Continue</button> 
+</form>
+
+<form id="set2" style="display:none;">
 <div class="form-group ">
     <label for="house"> <b>3. In a one-story pink house, there was a pink person, a pink cat, a pink fish, a pink computer, a pink chair, a pink table, a pink telephone, a pink shower – everything was pink! What color were the stairs?</b></label>
     <textarea class="form-control" id="house" rows="2"></textarea>
@@ -76,6 +72,10 @@
     <label for="rainbow"> <b>4. What is at the end of a rainbow?</b></label>
     <textarea class="form-control" id="rainbow" rows="2"></textarea>
 </div>
+<button type="button" class="btn btn-primary btn-lg btn-block" id="next2" onclick="displayNextQuestions(2)">Continue</button>
+</form>
+
+<form id="set3" style="display:none;">
 <div class="form-group ">
     <label for="light"> <b>5. A girl is sitting in a house at night that has no lights on at all. There is no lamp, no candle, nothing. Yet she is reading. How?</b></label>
     <textarea class="form-control" id="light" rows="2"></textarea>
@@ -84,15 +84,45 @@
     <label for="wood"> <b>6. What goes around and around the wood, but never goes into the wood?</b></label>
     <textarea class="form-control" id="wood" rows="2"></textarea>
 </div>
-
-<!-- Submit Button-->
-<button type="button" class="btn btn-primary btn-lg btn-block" submit onclick="alert('Where do these answers get stored?')">
-    Submit Your Answer!
-    </button>
-    <br>
-
+<button type="button" class="btn btn-primary btn-lg btn-block" id="next4" onclick="done()">Submit Your Answers!</button>
 </form>
 
-        </div> 
+    <br>
+
+        </div>
+        
+        
+
+        <script>
+        
+        function displayNextQuestions(set) {
+                // set is which set of questions was just displayed
+                if (set > 0 && set < 3) {
+                    // stop displaying the current next button 
+                    var lastButton = document.getElementById("next"+set);
+                    lastButton.style.display = "none";
+                    // start displaying the next set (questions+button)
+                    var nextQuestions = document.getElementById("set"+(set+1));
+                    nextQuestions.style.display = "block";
+
+                    // automatically scroll down to new questions
+                    window.location = "#set"+(set+1);
+                }
+            }
+
+            function done() {
+                
+                // let user know that these answers are DISAPPEARING FOREVER
+                alert('Where do these answers get stored?');
+                // stop displaying all of the alerts, questions, and buttons 
+                for (var i = 0; i < 6; i = i + 1) {
+                    var nextQuestions = document.getElementById("set"+i);
+                    nextQuestions.style.display = "none";
+                }
+                // start displaying the thanks alert
+                var thanksAlert = document.getElementById("thanks");
+                thanksAlert.style.display = "block";
+            }            
+        </script>
     </body> 
 </html>
