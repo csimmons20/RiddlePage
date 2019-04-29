@@ -10,6 +10,13 @@
     
      <!-- This meta tag make the text scale correctly on desktop AND mobile browsers. -->
      <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+            img {
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+            }
+    </style>
 
      <!-- This link and 2 scripts load the Bootstrap CSS stylesheet -->
      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
@@ -36,18 +43,20 @@
     <br>
 <!-- Link to answers -->
 <div class="container-fluid">
-    <a href="https://www.everythingmom.com/parenting/45-riddles-and-brain-teasers-for-kids">
-    <div class="alert alert-info" role="alert" style="text-align: center"> Riddle Answer Key</div>
+    <div id="link">
+    <a href="https://www.everythingmom.com/parenting/45-riddles-and-brain-teasers-for-kids" >
+    <div class="alert alert-info" role="alert" style="text-align: center">Riddle Answer Key</div>
 </a>
+</div>
 
 <!-- Instructions -->
-<div class="alert alert-info" role="alert">
+<div class="alert alert-info" role="alert" id="instruct">
     <b>Instructions:</b> Read the riddle and answer each question as best as you can. Remember to think out of the box!
 </div>
 
 <!-- Image -->    
-<div class="holder">
-        <img class="img-fluid" src="Riddle.png">
+<div class="holder" id="image">
+        <img class="img-fluid" src="Riddle.png" style="width:50%">
       </div>
 
       <!-- Questions -->
@@ -87,6 +96,9 @@
 <button type="button" class="btn btn-primary btn-lg btn-block" id="next4" onclick="done()">Submit Your Answers!</button>
 </form>
 
+<div id="thanks" name="thanks" class="alert alert-primary" role="alert" style="display:none;">Thanks for Playing!
+    </div>
+
     <br>
 
         </div>
@@ -97,7 +109,7 @@
         
         function displayNextQuestions(set) {
                 // set is which set of questions was just displayed
-                if (set > 0 && set < 3) {
+                if (set > 0 && set < 4) {
                     // stop displaying the current next button 
                     var lastButton = document.getElementById("next"+set);
                     lastButton.style.display = "none";
@@ -111,14 +123,21 @@
             }
 
             function done() {
-                
                 // let user know that these answers are DISAPPEARING FOREVER
-                alert('Where do these answers get stored?');
+                alert('Where do these answers get stored? hi' );
                 // stop displaying all of the alerts, questions, and buttons 
-                for (var i = 0; i < 6; i = i + 1) {
+                for (var i = 1; i < 4; i = i + 1) {
                     var nextQuestions = document.getElementById("set"+i);
                     nextQuestions.style.display = "none";
+                
                 }
+                var TheImage = document.getElementById("image");
+                TheImage.style.display = "none"
+                var RulesInstruct = document.getElementById("instruct");
+                RulesInstruct.style.display = "none"
+                var TheLink = document.getElementById("link")
+                TheLink.style.display = "none"
+
                 // start displaying the thanks alert
                 var thanksAlert = document.getElementById("thanks");
                 thanksAlert.style.display = "block";
