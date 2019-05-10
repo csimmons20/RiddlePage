@@ -44,6 +44,19 @@
     <br>
 
 <div class="container-fluid">
+
+        <div class="container-fluid">
+                <div class="form-group">
+                    <br>
+                    <label for="catfact">Can you name a fact about cats?</label>
+                    <textarea class="form-control" id="catfact" rows="1"></textarea>
+                    <br>
+                    <label for="randomcatfact">Here are all facts about cats:</label>
+                    <textarea class="form-control" id="randomcatfact" rows="10"></textarea>
+                </div>
+    
+            </div>
+    
     
         <div id="link" style="display:none;">
                 <a href="https://www.everythingmom.com/parenting/45-riddles-and-brain-teasers-for-kids" >
@@ -109,7 +122,8 @@
 
 
 <div id="thanks" name="thanks" class="alert alert-primary" role="alert" style="display:none;">
-    Thanks for Playing! Your answers will be saved.
+    Thanks for playing, but one last thing!
+    <br>
     </div>
 
     <br>
@@ -241,6 +255,7 @@
             
 
             window.onload = function() { // Runs code on load
+                RandomCatFacts();
                 restoreFromLocalStorage();
             };
 
@@ -268,6 +283,68 @@
 
                 // scroll back to top of page
                 window.location.reload();
+            }
+
+
+
+            var getJSON = function(url, callback) {
+                var xhr = new XMLHttpRequest();
+                xhr.open('GET', url, true);
+                xhr.responseType = 'json';
+                xhr.onload = function() {
+                    var status = xhr.status;
+                    if (status === 200) {
+                        callback(null, xhr.response);
+                    } else {
+                        callback(status, xhr.response);
+                    }
+                };
+                xhr.send();
+            };
+
+            //function checkPI() {
+              //  var FactDiv = document.getElementById('catfact');
+                //getJSON('https://cat-fact.herokuapp.com/facts' + (FactDiv.value),
+                //function(err, data) {
+                    //if (err !== null) {
+                     //   alert('Cat Fact API went wrong: ' + err);
+                    //} else {
+                     //   if (data.text === FactDiv.value) {
+                   //         alert(FactDiv.value + " is correct!");
+                 //       } else {
+               //             alert(FactDiv.value + " is wrong!");
+             //           }
+                   // }
+            //    });
+            //}
+
+            function randomIntFromInterval(min,max) {
+                // min and max included 
+                return Math.floor(Math.random()*(max-min+1)+min);
+            }
+            
+            function RandomCatFacts() {
+                var CatFactDiv = document.getElementById('catfact');
+                var RandomCatFactDiv = document.getElementById('randomcatfact');
+                getJSON('https://cors.io/?https://cat-fact.herokuapp.com/facts',
+                function(err, data) {
+                    alert(data);
+                    if (err !== null) {
+                        alert('Cat Fact API went wrong: ' + err);
+                    } else {
+                        alert(data);
+                        var fact = data.all[randomIntFromInterval(0, data.length)];
+                        alert(fact);
+                        CatFactDiv.value = "Here's a fact written by " + ": " + fact.text;
+                        
+                        var facts = '';
+                        for (var i = 0; i < data.length; i = i + 1) {
+                            facts = facts + data[i].name + " said " + data[i].text + ".";
+                            facts = facts + '\n';
+                        }
+                        RandomCatFactDiv.value = facts;
+                    }
+                });
             }
 
         </script>
