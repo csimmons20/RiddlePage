@@ -22,7 +22,29 @@
      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-</head>
+
+            <!-- The core Firebase JS SDK is always required and must be listed first -->
+            <script src="https://www.gstatic.com/firebasejs/5.10.1/firebase.js"></script>
+
+            <!-- TODO: Add SDKs for Firebase products that you want to use
+                https://firebase.google.com/docs/web/setup#config-web-app -->
+
+            <script>
+            // Your web app's Firebase configuration bah
+            var firebaseConfig = {
+                apiKey: "AIzaSyDyERDv-UrytNJ1ke_ZkdSK2iUW9m5qOP4",
+                authDomain: "riddlequizform.firebaseapp.com",
+                databaseURL: "https://riddlequizform.firebaseio.com",
+                projectId: "riddlequizform",
+                storageBucket: "riddlequizform.appspot.com",
+                messagingSenderId: "677291864872",
+                appId: "1:677291864872:web:05a7b05f8c766d6e"
+            };
+            // Initialize Firebase
+            firebase.initializeApp(firebaseConfig);
+            </script>
+
+    </head>
 
 <!-- Make background color vivid blue-->
 <body style="background-color: #32a0ff">
@@ -123,7 +145,7 @@
 
 
 <div id="thanks" name="thanks" class="alert alert-primary" role="alert" style="display:none;">
-    Thanks for playing, but one last thing!
+    Thanks for playing!
     <br>
     </div>
 
@@ -135,6 +157,8 @@
 
         <script>
         
+            var db = firebase.firstore();
+
         function displayNextQuestions(set) {
                 // Once next button is pressed, we're no longer talking about restored data.
                 document.getElementById("restored").style.display = "none";
@@ -173,7 +197,10 @@
                 TheImage.style.display = "none"
                 var RulesInstruct = document.getElementById("instruct");
                 RulesInstruct.style.display = "none"
-                
+                var CF = document.getElementById("catfact");
+                CF.style.display = "none";
+                var CB = document.getElementById("catbreed");
+                CB.style.display = "none";
 
                
 
@@ -202,6 +229,8 @@
                 var dataObjectAsString = JSON.stringify(dataObject);
                 // Store the data object string in local storage in the variable named 'data'.
                 window.localStorage.setItem("data", dataObjectAsString);
+
+                db.collection("quiz").add(dataObject);
             }        
 
 
