@@ -24,26 +24,11 @@
      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
             <!-- The core Firebase JS SDK is always required and must be listed first -->
-            <script src="https://www.gstatic.com/firebasejs/5.10.1/firebase.js"></script>
 
             <!-- TODO: Add SDKs for Firebase products that you want to use
                 https://firebase.google.com/docs/web/setup#config-web-app -->
 
-            <script>
-            // Your web app's Firebase configuration bah
-            var firebaseConfig = {
-                apiKey: "AIzaSyDyERDv-UrytNJ1ke_ZkdSK2iUW9m5qOP4",
-                authDomain: "riddlequizform.firebaseapp.com",
-                databaseURL: "https://riddlequizform.firebaseio.com",
-                projectId: "riddlequizform",
-                storageBucket: "riddlequizform.appspot.com",
-                messagingSenderId: "677291864872",
-                appId: "1:677291864872:web:05a7b05f8c766d6e"
-            };
-            // Initialize Firebase
-            firebase.initializeApp(firebaseConfig);
-            </script>
-
+        
     </head>
 
 <!-- Make background color vivid blue-->
@@ -153,11 +138,27 @@
 
         </div>
         
-        
+        <script src="https://www.gstatic.com/firebasejs/5.10.1/firebase.js"></script>
+
+        <script>
+             // Your web app's Firebase configuration bah
+             var firebaseConfig = {
+                apiKey: "AIzaSyDyERDv-UrytNJ1ke_ZkdSK2iUW9m5qOP4",
+                authDomain: "riddlequizform.firebaseapp.com",
+                databaseURL: "https://riddlequizform.firebaseio.com",
+                projectId: "riddlequizform",
+                storageBucket: "riddlequizform.appspot.com",
+                messagingSenderId: "677291864872",
+                appId: "1:677291864872:web:05a7b05f8c766d6e"
+            };
+            // Initialize Firebase
+            firebase.initializeApp(firebaseConfig);
+        </script>
 
         <script>
         
-            var db = firebase.firstore();
+            
+            var db = firebase.firestore();
 
         function displayNextQuestions(set) {
                 // Once next button is pressed, we're no longer talking about restored data.
