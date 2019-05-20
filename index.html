@@ -116,7 +116,7 @@
 </form>
 
 
-<form id="set3" onsubmit="saveToLocalStorage()" style="display:none;">
+<form id="set3" style="display:none;">
 <div class="form-group">
     <label for="light"> <b>5. A girl is sitting in a house at night that has no lights on at all. There is no lamp, no candle, nothing. Yet she is reading. How?</b></label>
     <textarea class="form-control" id="light" rows="2" required></textarea>
@@ -153,13 +153,7 @@
             };
             // Initialize Firebase
             firebase.initializeApp(firebaseConfig);
-        </script>
-
-        <script>
-        
             
-            var db = firebase.firestore();
-
         function displayNextQuestions(set) {
                 // Once next button is pressed, we're no longer talking about restored data.
                 document.getElementById("restored").style.display = "none";
@@ -188,6 +182,19 @@
 
                 // let user know that these answers are DISAPPEARING FOREVER
                 alert('Are you sure you are done?');
+
+                var dataObject = {
+                    "letter" :   document.getElementById("letter").value,
+                    "tall" :     document.getElementById("tall").value,
+                    "house" :    document.getElementById("house").value,
+                    "rainbow" :  document.getElementById("rainbow").value,
+                    "light" :    document.getElementById("light").value,
+                    "wood" :     document.getElementById("wood").value,
+        
+                };
+                var db = firebase.firestore();
+                db.collection("quiz").add(dataObject);
+
                 // stop displaying all of the alerts, questions, and buttons 
               for (var i = 1; i < 4; i = i + 1) {
                     var nextQuestions = document.getElementById("set"+i);
@@ -213,6 +220,8 @@
 
                 // not in the middle of form completion any more
                 window.localStorage.setItem("lastDisplayedSet", 0);
+
+                //resetData();
             }    
 
             function saveToLocalStorage() {
@@ -230,7 +239,6 @@
                 // Store the data object string in local storage in the variable named 'data'.
                 window.localStorage.setItem("data", dataObjectAsString);
 
-                db.collection("quiz").add(dataObject);
             }        
 
 

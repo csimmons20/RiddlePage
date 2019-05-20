@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Riddle Respones</title>
+        <title>Simple CSS Q3 Reflection with saving</title>
         <!-- This meta tag make the text scale correctly on desktop AND mobile browsers. -->
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -14,94 +14,91 @@
     <body>
         <nav class="navbar navbar-expand-md navbar-dark bg-primary">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#">Riddle Quiz Responses</a>
+                <a class="navbar-brand" href="index.html">Riddle Me This Quiz</a>
                 <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#myNavbar">
                     <span class="navbar-toggler-icon"></span> 
                 </button>
                 <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav">
-                        <li><a class="nav-link" href="index.html">Quiz</a></li>
+                        <li><a class="nav-link" href="responses.html">Responses</a></li>
                     </ul>
                 </div>
-    
             </div>
         </nav>
-
+        
         <br>
 
         <div class="container-fluid">
-
-            <div class="alert alert-primary" role="alert">
-                These are the last responses to the form.
+            <h3 style="text-align:center">History</h3>
+            <div class="table-responsive">
+                <table class="table" id="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">Delete</th>
+                        <th scope="col">Question 1</th>
+                        <th scope="col">Question 2</th>
+                        <th scope="col">Question 3</th>
+                        <th scope="col">Question 4</th>
+                        <th scope="col">Question 5</th>
+                        <th scope="col">Question 6</th> 
+                    </tr>
+                    </thead>
+                    <tbody id="history">
+                    </tbody>
+                </table>
             </div>
-
-            <form>
-                <div class="form-group">
-                    <label for="dataObjectAsString">dataObjectAsString:</label>
-                    <textarea id="dataObjectAsString" rows="3"></textarea>
-                </div>
-
-                <div class="form-group">
-                    <label for="knowledge">Question 1:</label>
-                    <textarea id="letter" rows="1"></textarea>
-                </div>
-
-                <div class="form-group">
-                    <label for="skills">Question 2:</label>
-                    <textarea id="tall" rows="1"></textarea>
-                </div>
-
-                <div class="form-group">
-                    <label for="different">Question 3:</label>
-                    <textarea id="house" rows="1"></textarea>
-                </div>
-
-                <div class="form-group">
-                    <label for="accomplishment">Question 4:</label>
-                    <textarea id="rainbow" rows="1"></textarea>
-                </div>
-
-                <div class="form-group">
-                    <label for="improve">Question 5:</label>
-                    <textarea id="light" rows="1"></textarea>
-                </div>
-
-                <div class="form-group">
-                    <label for="collaborate">Question 6:</label>
-                    <textarea id="wood" rows="1"></textarea>
-                </div>
-            </form>
         </div>
-
+        
+        <script src="https://www.gstatic.com/firebasejs/5.10.1/firebase.js"></script>
         <script>
-            window.onload = function() { // Runs code on load
-                fillFromLocalStorage();
+             // Your web app's Firebase configuration bah
+             var firebaseConfig = {
+                apiKey: "AIzaSyDyERDv-UrytNJ1ke_ZkdSK2iUW9m5qOP4",
+                authDomain: "riddlequizform.firebaseapp.com",
+                databaseURL: "https://riddlequizform.firebaseio.com",
+                projectId: "riddlequizform",
+                storageBucket: "riddlequizform.appspot.com",
+                messagingSenderId: "677291864872",
+                appId: "1:677291864872:web:05a7b05f8c766d6e"
             };
+            // Initialize Firebase
+            firebase.initializeApp(firebaseConfig);
 
-            function fillFromLocalStorage() {
-                // Get the data object string from local storage and try to turn it back into an object.
-                // This takes the data from local storage and sets the textbox to the values.
-                var dataObjectAsString = window.localStorage.getItem("data");
-                if (dataObjectAsString === null) {
-                    return;
-                }
-                var dataObject = JSON.parse(dataObjectAsString);
-                if (dataObject === null) {
-                    return;
-                }
+        var db = firebase.firestore();
 
-                // We successfully got a data object and now textbox's can get the saved values.
-                document.getElementById("dataObjectAsString").value = dataObjectAsString;
-                document.getElementById("letter").value = dataObject.letter;
-                document.getElementById("tall").value = dataObject.tall;
-                document.getElementById("house").value = dataObject.house;
-                document.getElementById("rainbow").value = dataObject.rainbow;
-                document.getElementById("light").value = dataObject.light;
-                document.getElementById("wood").value = dataObject.woods;
-              
-                }
+window.onload = function() {
+    db.collection("quiz").onSnapshot(function(querySnapshot) {
+        document.getElementById('history').innerHTML = "";
+        querySnapshot.forEach((doc) => {
+            var tableRef = document.getElementById('table').getElementsByTagName('tbody')[0];
+            var newRow = tableRef.insertRow(tableRef.rows.length);
+
+            for (var key in doc.data()) {
+                var newCell = newRow.insertCell(0);
+                var newText  = document.createTextNode(doc.data()[key]);
+                newCell.appendChild(newText);
+            }
+            
+            newCell = newRow.insertCell(0);
+            newText = document.createElement("a");
+            newText.setAttribute("href", "javascript:deleteRow(\'" + doc.id + "\')");
+            newText.innerText = "delete";
+            newCell.appendChild(newText);
+
+            console.log(`${doc.id} => ${JSON.stringify(doc.data())}`);
+        });
+    });
+};
+
+function deleteRow(id) {
+    db.collection("form").doc(id).delete().then(function() {
+        console.log("Document successfully deleted!");
+        window.location.reload();
+    }).catch(function(error) {
+        console.error("Error removing document: ", error);
+    });
+}
 
         </script>
-
     </body>
 </html>
